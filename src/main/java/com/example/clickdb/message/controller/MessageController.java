@@ -5,9 +5,11 @@ import com.example.clickdb.message.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -32,7 +34,9 @@ public class MessageController {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
+
     @RequestMapping(value = "message/add-one", method = RequestMethod.POST)
+    @MessageMapping("/hello")
     @SendTo("/topic/activity")
     public ResponseEntity<Message> save(@RequestBody Message message) {
         Message result = messageService.addOne(message);
