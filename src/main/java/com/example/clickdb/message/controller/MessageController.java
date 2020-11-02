@@ -34,17 +34,15 @@ public class MessageController {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-
     @RequestMapping(value = "message/add-one", method = RequestMethod.POST)
-    @MessageMapping("/hello")
-    @SendTo("/topic/activity")
     public ResponseEntity<Message> save(@RequestBody Message message) {
         Message result = messageService.addOne(message);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @MessageMapping("/sendMessage")
+    @SendTo("/topic/messages")
     @RequestMapping(value = "message/add-all", method = RequestMethod.POST)
-    @SendTo("/topic/activity")
     public ResponseEntity<List<Message>> saveAll(@RequestBody List<Message> messages) {
         List<Message> result =  messageService.addAll(messages);
         return new ResponseEntity<>(result, HttpStatus.OK);
