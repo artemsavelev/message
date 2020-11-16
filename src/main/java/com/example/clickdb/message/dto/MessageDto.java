@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class MessageDto {
-    private Long id;
+    private Object id;
 
     private String message;
 

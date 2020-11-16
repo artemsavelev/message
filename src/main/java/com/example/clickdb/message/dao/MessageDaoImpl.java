@@ -1,7 +1,6 @@
 package com.example.clickdb.message.dao;
 
 import com.example.clickdb.message.conf.ClickHouseConfig;
-import com.example.clickdb.message.dto.MessageDto;
 import com.example.clickdb.message.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

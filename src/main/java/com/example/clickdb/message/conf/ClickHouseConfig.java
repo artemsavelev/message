@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Configuration
@@ -38,7 +38,7 @@ public class ClickHouseConfig implements AutoCloseable {
             List<Message> list = new ArrayList<>();
 
             while (rs.next()) {
-                list.add(new Message(rs.getLong("id"),
+                list.add(new Message(rs.getObject("id"),
                                 rs.getString("message"),
                                 rs.getTimestamp("created_date").toLocalDateTime()
                         )
@@ -57,7 +57,7 @@ public class ClickHouseConfig implements AutoCloseable {
         try (PreparedStatement pstmt = connection.prepareStatement("INSERT INTO message (id, message, created_date) VALUES (?, ?, ?)")) {
 
             for (Message message : messages) {
-                pstmt.setLong(1, message.getId());
+                pstmt.setObject(1, UUID.randomUUID());
                 pstmt.setString(2, message.getMessage());
                 pstmt.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
                 pstmt.addBatch();

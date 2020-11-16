@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// Cross-origin resource sharing
+// Совместное использование ресурсов между разными источниками
 @Component
 public class CORSFilter extends GenericFilterBean {
     @Override

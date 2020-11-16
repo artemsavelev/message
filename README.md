@@ -12,11 +12,11 @@ Project-test with use BD ClickHouse
 ```sql
 create table if not exists message
 (
-	id Int64,
+	id UUID,
 	message Nullable(String),
 	created_date DateTime
 )
-engine = MergeTree PARTITION BY toYYYYMMDD(created_date) ORDER BY id;
+engine = MergeTree PARTITION BY toYYYYMMDD(created_date) ORDER BY created_date;
 ```
 
 ## Interface

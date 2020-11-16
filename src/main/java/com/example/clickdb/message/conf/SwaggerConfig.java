@@ -26,7 +26,6 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .apiInfo(metaData());
     }
 
-
     public ApiInfo metaData() {
         return new ApiInfoBuilder()
                 .title("Spring Boot REST API")
@@ -34,12 +33,13 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
-                .contact(new Contact("Art", "localhost", "test@test.com"))
+                .contact(new Contact("Artem", "localhost", "test@test.com"))
                 .build();
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // UI does not work with swagger 3, you need to downgrade to 2.10
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
 

@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+// POJO message
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
-    private Long id;
+    private Object id;
 
     private String message;
 

@@ -36,17 +36,19 @@ public class MessageController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @MessageMapping("/sendMessage")
-    @SendTo("/topic/messages")
+    @MessageMapping("/sendMessage") // websocket endpoint for call saveAll method
+    @SendTo("/topic/messages") // websocket endpoint sending messages for subscribes
     @RequestMapping(value = "/addAll", method = RequestMethod.POST)
     @ApiOperation(value = "Adding a list of messages")
     public ResponseEntity<List<MessageDto>> saveAll(@RequestBody List<Message> messages) {
+
         if (messages.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        messageDao.addAll(messages);
+        messageDao.addAll(messages); // adding list messages
         List<MessageDto> result = MessageDto.messageDtoList(messages);
+
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
